@@ -15,6 +15,8 @@
 
 -define(CHILD(I, Type), {I, {I, start_link, []}, permanent, 5000, Type, [I]}).
 
+-define(CHILD_PARAM(I, Type, Param), {I, {I, start_link, Param}, permanent, 5000, Type, [I]}).
+
 
 -define(TEXT_HEAD2,
   #{<<"content-Type">> => <<"text/plain; charset=utf-8">>}).
