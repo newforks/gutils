@@ -5,21 +5,23 @@
 
 -module(gutils_app).
 
--behaviour(application).
-
 %% Application callbacks
--export([start/2, stop/1]).
+-export([get_env/2, get_env/3]).
 
 %%====================================================================
 %% API
 %%====================================================================
 
-start(_StartType, _StartArgs) ->
-    gutils_sup:start_link().
+get_env(App, Key) ->
+    get_env(App, Key, undefined).
 
-%%--------------------------------------------------------------------
-stop(_State) ->
-    ok.
+get_env(App, Key, Default) ->
+  case application:get_env(App, Key) of
+    {ok, Value} ->
+            Value;
+        _ ->
+            Default
+  end.
 
 %%====================================================================
 %% Internal functions
